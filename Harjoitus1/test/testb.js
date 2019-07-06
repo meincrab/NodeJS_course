@@ -1,4 +1,4 @@
-const Modb = require('../modb.js');
+/* const Modb = require('../modb.js');
 var expect = require('chai').expect;
 
 describe('Testing modb', () => {
@@ -22,3 +22,4 @@ describe('Testing modb', () => {
         expect(modbobj2.calcAverage()).to.equal(4.0);
     });
 });
+*/

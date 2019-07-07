@@ -3,8 +3,7 @@ Luokassa on kaksi metodia, 'randomNumber', joka arpoo satunnaisluvun ja 'calcAve
 joka laskee taulukossa olevien lukujen keskiarvon. Suorita moduuli (ja metodit)
  console.log:illa erillisessä tiedostossa.*/
 
- module.exports.exportedClass;
- class exportedClass {
+ module.exports = class NamedClass {
      randonNumber(){
         console.log(Math.random());
      }

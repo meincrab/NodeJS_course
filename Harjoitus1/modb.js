@@ -3,15 +3,20 @@ Luokassa on kaksi metodia, 'randomNumber', joka arpoo satunnaisluvun ja 'calcAve
 joka laskee taulukossa olevien lukujen keskiarvon. Suorita moduuli (ja metodit)
  console.log:illa erillisessä tiedostossa.*/
 
- module.exports = class NamedClass {
-     randonNumber(){
-        console.log(Math.random());
+ exports.NamedClass = class NamedClass {
+     constructor(min, max, usrArray){
+         this.min = min;
+         this.max = max;
+         this.usrArray = usrArray;
      }
-     calcAverage(x){
+     randomNumber(){
+        console.log(Math.random(this.min, this.max));
+     }
+     calcAverage(){
         var sum = 0;
-        x.forEach(element => {
+        this.usrArray.forEach(element => {
             sum += element;
         });
-        console.log(sum/x.length);
+        console.log(sum/this.usrArray.length);
      }
  };

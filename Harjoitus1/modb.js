@@ -20,4 +20,3 @@ joka laskee taulukossa olevien lukujen keskiarvon. Suorita moduuli (ja metodit)
         console.log(sum/this.usrArray.length);
      }
  };
- //small changes

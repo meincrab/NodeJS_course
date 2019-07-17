@@ -1,4 +1,3 @@
-/*
 const modcobj = require('../modc.js');
 const expect = require('chai').expect;
 
@@ -17,4 +16,3 @@ describe('Testing modc', () => {
         expect(modcobj.calcAverage()).to.equal(3.5);
     });
 });
-*/

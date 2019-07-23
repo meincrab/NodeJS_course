@@ -1,13 +1,15 @@
 var mysql = require('mysql');
 
-var conn = mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: ""
-});
+  password: "",
+  database : "nodesk"
+})
 
-conn.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!"); 
-});
+connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 
+  module.exports = connection;

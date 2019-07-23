@@ -9,9 +9,10 @@ function handleError(err) {
 }
 // add-metodin viimeisenä parametrina on callback, jolla saadaan kyselyn tulos
 // tässä tapauksessa tulos kertoo vain lisäyksen onnistumisen eli yksi tietue lisätty.
-Dbmethods.add('a1234', 'Ossi Opiskelija', 'a1234@jamk.fi', 105, function(err, result) {
+Dbmethods.add('a1224', 'Ossi Opiskelija', 'a1234@jamk.fi', 95, function(err, result) {
     if (err) {
         return handleError(err);
     }
     console.log(result.affectedRows + ' records inserted' );
 });
+

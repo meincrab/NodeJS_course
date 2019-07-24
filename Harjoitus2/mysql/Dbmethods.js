@@ -23,8 +23,38 @@ const Dbmethods = {
     update: function(study_points, student_code, callback){
         return conn.query("UPDATE Students SET study_points = '?' WHERE student_code = ?", 
             [study_points, student_code], callback);
+    },
+    addgrade: function(student_code, course_code, grade){
+        return conn.beginTransaction(function(err) {
+            if (err) { throw err; }
+            conn.query('INSERT INTO grades SET student_code=?, course_code=?, grade=?', [student_code, course_code, grade], function (error) {
+              if (error) {
+                return conn.rollback(function() {
+                  throw error;
+                });
+              }
+              conn.query('UPDATE students SET study_points = study_points + 5 WHERE student_code = ?', [student_code], function (error) {
+                if (error) {
+                  return conn.rollback(function() {
+                    throw error;
+                  });
+                }
+                conn.commit(function(err) {
+                  if (err) {
+                    return conn.rollback(function() {
+                      throw err;
+                    });
+                  }
+                  console.log('success!');
+                });
+              });
+            });
+          });
+    },
+    updategrade: function(student_code, course_code, grade, callback){
+        return conn.query('UPDATE grades SET grade = ? WHERE student_code = ? AND course_code = ?', 
+            [ grade, student_code, course_code], callback);
     }
-    
 }
 
 module.exports = Dbmethods;

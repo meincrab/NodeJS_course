@@ -4,11 +4,11 @@ function handleError(err) {
     process.exit(1);
 }
 
-Dbmethods.addgrade('a1234', 'test_code', 10, function(err, result) {
+Dbmethods.updategrade('a1234', 'test_code', 4, function(err, result) {
     if (err) {
         return handleError(err);
     }
-    console.log(result);
+    console.log(result.affectedRows + ' records inserted' );
 });
 
 //Task 2 work in progress

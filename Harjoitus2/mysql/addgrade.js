@@ -10,5 +10,3 @@ Dbmethods.addgrade('a1234', 'test_code', 10, function(err, result) {
     }
     console.log(result);
 });
-
-//Task 2 work in progress

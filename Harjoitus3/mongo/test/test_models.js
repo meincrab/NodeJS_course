@@ -2,6 +2,7 @@
   Skeemat on hyvä pitää omissa tiedostoissaan. Grade
   on Studentin alidokumentti. Alidokumentin skeema liitetään requirella
   päädokumentin skeemaan.
+  test_models.js
 */
 const mongoose = require('mongoose');
 const expect = require('chai').expect;

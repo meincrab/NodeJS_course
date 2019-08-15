@@ -3,7 +3,7 @@
  */
 // Kantayhteys otetaan dbconnection.js -tiedostossa joka on sisällytetty
 // require-lauseella Dbmethods.js -tiedostoon
-const Dbmethods = require('./Dbmethods');
+const Dbmethods = require('../Dbmethods');
 const expect = require('chai').expect;
 
 describe('Testing mysql', () => {

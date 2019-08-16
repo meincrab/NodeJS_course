@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/studentdb');
 
-var Student = require('./Student');
+var Student = require('./models/Student');
 
 Student.update(
     {

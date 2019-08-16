@@ -1,7 +1,7 @@
 /*
  * Testataan että mongodb:n perustoiminnot toimivat
  */
-require('../dbconnection');
+/* require('../dbconnection');
 const expect = require('chai').expect;
 const Student = require('../models/Student');
 const NewTestStudentObject = require('../NewTestStudentObject');
@@ -30,3 +30,4 @@ describe('Testing mongodb', () => {
         });
     });
 });
+*/

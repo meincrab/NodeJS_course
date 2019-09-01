@@ -78,6 +78,15 @@ router.get('/sivu2', function(req, res) {
     }); //salainen sivu
 });
 
+router.get('/sivu3', function(req, res){
+    sess = req.session;
+
+    res.render('sivu3', {
+        title: 'Olet nyt sessiossa sivulla sivu3!',
+        sessid: sess.id
+    });
+});
+
 // reitti JSON-Apiin voidaan myös suojata sessiolla
 router.get('/api', function(req, res) {
     sess = req.session; // laitetaan sessio-olio muuttujaan sess

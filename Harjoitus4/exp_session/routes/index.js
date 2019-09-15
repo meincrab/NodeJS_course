@@ -4,6 +4,9 @@
 */
 const express = require('express');
 const router = express.Router();
+let mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/studentdb');
+let Student = require('../models/Student');
 let sess;
 
 // sovelluksen juuri on osoitteessa http://localhost:3000
@@ -80,11 +83,15 @@ router.get('/sivu2', function(req, res) {
 
 router.get('/sivu3', function(req, res){
     sess = req.session;
-
     res.render('sivu3', {
         title: 'Olet nyt sessiossa sivulla sivu3!',
-        sessid: sess.id
-    });
+        sessid: sess.id,
+        data: Student.find({study_points : {$lt : 100}},function (err, students) {
+            if (err) return handleError(err);
+            return JSON.stringify(students);
+          })
+    })
+
 });
 
 // reitti JSON-Apiin voidaan myös suojata sessiolla

@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var gradesSchema = new Schema ({
     course_code: String,
     grade: Number
-});
+},{_id:false});
 module.exports = gradesSchema;
 
 /*

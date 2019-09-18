@@ -7,10 +7,3 @@ var gradesSchema = new Schema ({
     grade: Number
 });
 module.exports = gradesSchema;
-
-/*
-grades: [{
-    course_code: String,
-    grade: Number
-}]
-*/

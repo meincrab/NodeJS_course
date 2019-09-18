@@ -15,8 +15,23 @@
     <%= sessid %>
   </p>
   <p>
-    <%= data %>
-  
+    <% for(var i=0; i < data.length; i++) { 
+      %>
+     <li><%= data[i].name %> - <%= data[i].student_code %>
+      }   
+     <ul>
+        <%
+            console.log(Object.keys(data[i].grades));
+            let grades = Object.keys(data[i].grades);
+            var length = grades.length;
+            console.log("here is a length" + length);
+            for(var j=0; j < length; j++ ){
+          %>
+            <li> <%= grades[j].course_code %> - <%= grades[j].grade %>
+          <% } %>
+      </ul>
+    </li>
+   <% } %>
   </p>
 </body>
 

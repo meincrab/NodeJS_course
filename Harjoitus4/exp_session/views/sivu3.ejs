@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>
     <%= title %>
@@ -15,24 +14,38 @@
     <%= sessid %>
   </p>
   <p>
-    <% for(var i=0; i < data.length; i++) { 
-      %>
-     <li><%= data[i].name %> - <%= data[i].student_code %>
-      }   
-     <ul>
-        <%
-            console.log(Object.keys(data[i].grades));
-            let grades = Object.keys(data[i].grades);
-            var length = grades.length;
-            console.log("here is a length" + length);
-            for(var j=0; j < length; j++ ){
-          %>
-            <li> <%= grades[j].course_code %> - <%= grades[j].grade %>
-          <% } %>
+    <ul>
+       <% 
+          var bullshit = JSON.stringify(data);
+          console.log(bullshit)
+
+          function parseData(obj){
+            for (var key in obj){
+             %> 
+              <li> <%= (obj[key].student_code) %>  </li>
+              <li> <%= (obj[key].name)  %> </li>
+              <li> <%= (obj[key].email)  %> </li>
+              <li> <%= (obj[key].study_points) %> </li>
+              <ul>
+              <%
+              if (Object.keys(obj[key].grades).length != 0 ) {
+                var grades = obj[key].grades;
+                console.log(JSON.stringify(grades));
+                for (var secondKey in grades){ 
+                  if (grades[secondKey].course_code != undefined ) {
+                  %>                   
+                   <li> <%= grades[secondKey].course_code + " : " + grades[secondKey].grade %> </li> <%
+                  }
+                }
+              }
+              %> 
+              </ul> <%
+            }
+          }
+          parseData(data);
+      %>  
       </ul>
-    </li>
-   <% } %>
-  </p>
+    </p>
 </body>
 
 </html>

@@ -3,14 +3,13 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var gradesSchema = new Schema ({
-    course_code: String,
-    grade: Number
-},{_id:false});
+    course_code : {
+        type: String,
+        required: [true]
+    },
+    grade: {
+        type: Number,
+        min: [0]
+    },
+});
 module.exports = gradesSchema;
-
-/*
-grades: [{
-    course_code: String,
-    grade: Number
-}]
-*/

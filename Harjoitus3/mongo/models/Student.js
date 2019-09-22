@@ -2,12 +2,25 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var GradeSchema = require('./Grade')
 
-// create a schema
+// create a schema     required: [ "student_code", "name", "email"],
 var studentSchema = new Schema ({
-    student_code: String,
-    name: String,
-    email: String,
-    study_points: Number,
+
+    student_code: {
+        type: String,
+        required: [true]
+    },
+    name:{
+        type: String,
+        required: [true]
+    },
+    email: {
+        type: String,
+        required: [true]
+    },
+    study_points: {
+        type: Number,
+        min: [0]
+    },
     grades:  [GradeSchema]
 });
 

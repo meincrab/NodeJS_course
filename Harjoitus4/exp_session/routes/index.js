@@ -99,7 +99,7 @@ router.get('/api', function(req, res) {
     sess = req.session; // laitetaan sessio-olio muuttujaan sess
     // api on suojattu salasanalla. Tässä on kovakoodattu esimerkkiapi key: value
     if (sess.pass === 'qwerty') {
-        res.json({
+        res.json({ 
             key: 'value'
         });
 
@@ -108,7 +108,7 @@ router.get('/api', function(req, res) {
             message: 'Et ole kirjautunut tai salasanasi on väärä',
         });
     }
-});
+}); 
 
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err) {

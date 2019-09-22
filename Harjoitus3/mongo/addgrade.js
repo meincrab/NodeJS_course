@@ -8,7 +8,7 @@ Student.update(
         student_code: "t1234"
     },
     {
-        $push : { grades : {course_code: "TestCourse", grade: 5}}
+        $push : { grades : {course_code: "DoubleTestCourse", grade: 5}}
     }, 
     function(err) {
         if (err) throw err;

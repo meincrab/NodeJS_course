@@ -89,10 +89,11 @@ exports.updateGrades = (req, res) => {
         });
     } 
     // Find student grades and update it with the request body
-    Student.findOneAndUpdate({'Student.student_code':req.params.student_code, 'Student.$.course_code':req.params.course_code},{
-        'Student.$.grade' : req.body.grade
+    Student.findOneAndUpdate({student_code : req.params.student_code, 'grades.course_code':req.params.course_code},{
+        'grades.$.grade' : req.body.grade
         }, {new: true})
-    .then(student => {
+
+        .then(student => {
         if(!student) {
             return res.status(404).send({
                 message: "Student not found with code " + req.params.student_code
@@ -107,6 +108,79 @@ exports.updateGrades = (req, res) => {
         }
         return res.status(500).send({
             message: "Error updating note with id " + req.params.student_code
+        });
+    });
+};
+
+exports.updateStudent = (req, res) => {
+    // Validate Request
+    if(!req.body.email) {
+        return res.status(400).send({
+            message: "Email content can not be empty"
+        });
+    } 
+    // Find student grades and update it with the request body
+    Student.findOneAndUpdate({student_code : req.params.student_code},{
+        email : req.body.email,
+        study_points : req.body.study_points
+        }, {new: true})
+        .then(student => {
+        if(!student) {
+            return res.status(404).send({
+                message: "Student not found with code " + req.params.student_code
+            });
+        }
+        res.send(student);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.student_code
+            });                
+        }
+        return res.status(500).send({
+            message: "Error updating note with id " + req.params.student_code
+        });
+    });
+};
+
+exports.find = (req, res) => {
+    Student.find({study_points : {$lt : req.params.points}})
+    .then(student => {
+        if(!student) {
+            return res.status(404).send({
+                message: "Student not found with code " + req.params.studentId
+            });            
+        }
+        res.send(student);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Student not found with code " + req.params.studentId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving student with code " + req.params.studentId
+        });
+    });
+};
+
+exports.addNewCourse = (req, res) => {
+    // Validate request
+    if(!req.body.course_code) {
+        return res.status(400).send({
+            message: "Course code can not be empty"
+        });
+    }
+    // Save Student in the database
+    Student.update({student_code : req.params.student_code},
+        {
+            $push : { grades : {course_code: req.body.course_code, grade: req.body.grade}}
+        })
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while adding new course."
         });
     });
 };

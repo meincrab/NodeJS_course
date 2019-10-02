@@ -5,4 +5,8 @@ module.exports = (app) => {
     app.post('/students', students.addNew);
     app.delete('/students/:studentId', students.delete);
     app.put('/grades/:student_code/:course_code', students.updateGrades);
+    app.put('/grades/:student_code', students.updateStudent);
+    app.get('/students/points/:points', students.find)
+    app.put('/courses/:student_code', students.addNewCourse)
+
 }

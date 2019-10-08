@@ -6,7 +6,7 @@ const UserController = {
     registerUser: function(req, res, next){
         const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
-        User.create({
+        User.create({   
             username: req.body.username,
             password: hashedPassword,
             isadmin: req.body.isadmin

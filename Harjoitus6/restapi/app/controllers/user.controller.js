@@ -1,9 +1,8 @@
-const bcrypt = require('bcrypt.js');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
 
-const UserController = {
-    registerUser: function(req, res, next){
+    exports.registerUser = (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
         User.create({   
@@ -13,7 +12,7 @@ const UserController = {
         },
         (err, user) => {
             if(err) {
-                return res.status(500).send('Käyttäjän rekisteröinti epäonnistui.')
+                return res.status(500).send(err)
             }
             const payload = {
                 'username' : user.username,
@@ -30,28 +29,29 @@ const UserController = {
                 token:token
             });
         });
-    },
-    authenticateUser: function(req, res, next){
-        User.findOne = (req, res) => {
-            User.find({Username: req.params.username})
-            .then(user => {
-                if(!user) {
-                    return res.status(404).send({
-                        message: "User not found with code " + req.params.username
-                    });            
-                }
-                res.send(student);
-            }).catch(err => {
-                if(err.kind === 'ObjectId') {
-                    return res.status(404).send({
-                        message: "User not found with name: " + req.params.username
-                    });                
-                }
-                return res.status(500).send({
-                    message: "Error retrieving user width given name " + req.params.username
-                });
-            });
-        };
-        
-    }
-}
+    };
+
+    exports.authenticateUser = (req,res, next) => {
+        const token = req.header['x-access-token'];
+        if(!token) return res.status(401).send({auth:false, message: 'No token provided.'});
+        jwt.verify(token, config.secret, function(err, decoded){
+            if(err) return res.status(500).send({auth: false, message: 'Failed to authenticate token.'});
+
+            res.status(200).send(decoded);
+        });
+    };
+
+    exports.login = (req,res,nest) => {
+        User.findOne({username: req.body.username}, function(err,user){
+            if (err) return res.status(500).send('Error on the server.');
+            if (!user) return res.status(404).send('No user found.');
+
+            var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+            if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
+            
+            var token = jwt.sign({ id: user._id }, config.secret, {
+                expiresIn: 60 * 60 * 24 // expires in 24 hours
+            });            
+            res.status(200).send({ auth: true, token: token });
+          });
+    };

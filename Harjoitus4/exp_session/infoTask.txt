@@ -1,0 +1,8 @@
+Harjoitus4. Expressin sessiot ja EJS-templaatit
+
+Jatka tätä Express-sovellusta siten että teet siihen kolmannen EJS-sivun jolle kirjaudutaan session avulla 
+samoin kuin kahdelle olemassa olevalle sivulle. Kolmannella sivulla näytetään kaikki edellisen tehtävän mongodb 
+-kannassa olevat opiskelijat ja heidän arvosanansa, eli lisäät sovellukseen kantayhtyden ja opiskelijoiden 
+tietojen haun kannasta uudelle sivulle.
+
+Test-kansiossa olevien testien tulee mennä läpi.

@@ -1,0 +1,27 @@
+Harjoitus2. MySQL:n käyttö
+
+Luo uusi MySQL-tietokanta nimeltään nodesk. Aja siellä nämä SQL-komennot joilla luodaan kannan taulut ja niiden 
+välinen relaatio. Tee sitten tiedostot: add.js, delete.js, find.js, update.js, addgrade.js ja updategrade.js. 
+Tiedostojen ajaminen suorittaa seuraavat operaatiot MySQL -tietokannassa:
+
+1. add.js - lisää uuden opiskelijan. 2. delete.js - poistaa opiskelijan opiskelijanumeron perusteella. 3. 
+find.js - hakee opiskelijat joilla on opintopisteitä alle 100.  4. update.js - muokkaa opiskelijan 
+opintopisteitä. 5. addgrade.js - lisää opiskelijalle uuden arvosanan, 6.updategrade.js -  muokkaa opiskelijan 
+kurssin arvosanaa.
+
+HUOM! Seuraavat kolme seikkaa on huomioitava: 1) SQL-kyselyt tulee tehdä erillisessä tiedostossa olevaan 
+JS-olioon sen metodien sisälle. Olion (ja tiedoston) nimi voi olla esim. Dbmethods. Kts. Dbmethods.js -malli  
+jossa on yksi metodi. Ajettavat js-tiedostot kuten add.js eivät saa sisältää SQL:ää vaan toimenpiteet 
+suoritetaan metodikutsuilla. Kts. add.js -malli. 2) Jos poistat opiskelijan, pitää ensin poistaa kaikki hänen 
+arvosanansa. Tee sitä varten Dbmethods-olioon deleteGrade -metodi 3) Jos lisäät opiskelijalle addgrade.js 
+-tiedostossa arvosanan 1-5, pitää opiskelijan opintopistemäärää lisätä viidellä (oletamme yksinkertaistaen että 
+jokainen kurssi on laajuudeltaan 5op). Toteuta tämä transaktion avulla (kts. malliesimerkki). Tietokannan 
+transaktio on siis yhtenä toimenpiteenä toteutettava tietokantaan kohdistuvien toimenpiteiden sarja (tässä 2 
+kpl), jossa jonkin osan epäonnistuessa koko toimenpidesarja peruutetaan.
+
+Sovellukseen ei tarvitse tehdä minkäänlaista käyttöliittymää. Riittää että tiedostoja ajamalla suoritetaan 
+edellä mainitut kantaoperaatiot. Apua saat tästä tutoriaalista ja SQL- komentojen dokumentaatiosta.
+
+Voit tehdä ratkaisut tähän kansioon. Test-kansiossa olevien testien tulee mennä läpi. Testitietokanta ja 
+tehtävän toteutuksessa käytetty kanta voivat tässä tapauksessa olla sama kanta koska kyseessä on vain 
+harjoitustehtävä.

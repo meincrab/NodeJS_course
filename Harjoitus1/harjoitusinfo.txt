@@ -1,0 +1,18 @@
+Harjoitus1. Moduulien kehittäminen
+
+a) Tee pieni Node-moduuli joka exporttaa anonyymin funktion.  Funktio arpoo satunnaisen luvun käyttäjän 
+antamalta väliltä. Suorita moduuli (ja funktio) console.log:illa erillisessä tiedostossa. Tee tämä tehtävä alla 
+olevan videon opastuksen avulla. Tarkoituksena on varmistaa että ohjelmointiympäristö on asennettu oikein ja 
+ymmärrät kuinka harjoitukset tehdään.
+
+b) Tee toinen moduuli joka exporttaa ES6-luokan jolla on nimi. Luokassa on kaksi metodia, 'randomNumber', joka 
+arpoo satunnaisluvun ja 'calcAverage' joka laskee taulukossa olevien lukujen keskiarvon. Suorita moduuli (ja 
+metodit) console.log:illa erillisessä tiedostossa.
+
+c) Sama kuin kohdassa b) mutta exporttaa nyt luokasta luotu anonyymi olio.
+
+Mallia voit katsoa esim. oppaasta: Nodejs module patterns (oppaan esimerkit tehty ES5:llä mutta ovat 
+sovellettavissa).
+
+Voit tehdä ratkaisut tähän kansioon. Test-kansiossa olevien testien tulee mennä läpi. Kansiossa ovat mukana myös 
+package.json, .ternjs ja .eslintrc.

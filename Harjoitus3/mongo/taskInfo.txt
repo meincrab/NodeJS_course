@@ -1,0 +1,20 @@
+Harjoitus3. MongoDB:n ja Mongoosen käyttö
+
+Tee Mongoose-skeema nimeltään Student.js jonka kentät ovat: student_code, name, email, study_points ja grades. 
+Grades on alidokumentti jossa ovat kentät: course_code ja grade. Tee sitten tiedostot: add.js, delete.js, 
+find.js, update.js, addcourse.js ja updategrade.js. Tiedostojen ajaminen suorittaa seuraavat operaatiot Mongodb 
+-tietokannassa:
+
+1. add.js - lisää uuden opiskelijan. 2. delete.js - poistaa opiskelijan opiskelijakoodin perusteella. 3. find.js 
+- hakee opiskelijat joilla on opintopisteitä alle 100.  4. update.js - muokkaa opiskelijan opintopisteitä. 5. 
+addgrade.js - lisää opiskelijalle uuden arvosanan (vihje: $push -komento), 6.updategrade.js -  muokkaa 
+opiskelijan kurssin arvosanaa (vihje: grades.$.grade).
+
+Testi tai add.js luo automaattisesti mongodb -kannan "studentdb" ja sinne collectionin nimeltään "students" 
+jonne opiskelijat tallennetaan. Sovellukseen ei tarvitse tehdä käyttöliittymää, vaan riittää että tiedostoja 
+ajamalla suoritetaan edellä mainitut kantaoperaatiot. Apua saat tästä tutoriaalista ja Mongoosen sekä Mongodb:n 
+kyselyiden ja komentojen dokumentaatiosta.
+
+Voit tehdä ratkaisut tähän kansioon. Test-kansiossa olevien testien tulee mennä läpi. Testitietokanta ja 
+tehtävän toteutuksessa käytetty kanta voivat tässä tapauksessa olla sama kanta koska kyseessä on vain 
+harjoitustehtävä.

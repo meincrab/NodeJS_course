@@ -1,0 +1,16 @@
+Harjoitus7. Suojattu REST-api
+
+Jatketaan edellistä tehtävää. Tee edellisen tehtävän POST, DELETE ja PUT -reitteihin authorisaatio JWT:llä 
+(tässä malliksi router-tiedosto jossa on authorisaatio). Autentikaatiossa eli tunnareilla sisäänkirjautumisessa 
+ei tässä tapauksessa ole käyttöliittymää vaan käyttö tapahtuu Postmanilla. Postmanilla mennään ensin 
+autentikaatioreittiin jonne postataan tunnus ja salasana jolloin saadaan JWT-token. Kun esim. postataan uusi 
+opiskelija, laitetaan Postmanissa opiskelijan tietojen lisäksi headerin mukana avain x-access-token ja sen 
+arvona JWT-tokenin arvo. Kun oikea JWT-tokenin arvo on lähetetty, niin opiskelijan postaus onnistuu.
+
+Huomaa että edellisessä tehtävässä ollut testi, jossa testattiin uuden opiskelijan luontia, ei mene enää läpi 
+ellei samassa post-pyynnössä lähetetä myös tokenia. Testi menee läpi kun lisäät testissä olevan apiteststudent 
+JSON-olion viimeiseksi kentäksi "token": "tokenin arvo". Token voidaan lähettää siis myös viestin bodyssä olion 
+ominaisuutena.
+
+Mallia tehtävän tekemiseen saat esim. tästä tutoriaalista
+https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/

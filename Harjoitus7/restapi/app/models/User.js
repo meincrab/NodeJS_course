@@ -1,11 +1,15 @@
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+var mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    username: {type: String, unique: true, required: true},
-    password: {type: String, required: true},
-    isadmin: {type: Boolean, required: true}
+var userSchema = mongoose.Schema({
+
+// Käyttäjän Google-tiedot
+    google: {
+        id: String,
+        token: String,// Googlen access-token joka valtuuttaa pääsyyn hakemaan tiedot Googlelta
+        email: String,
+        name: String
+    }
+
 });
 
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

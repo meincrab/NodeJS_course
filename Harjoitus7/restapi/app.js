@@ -23,7 +23,7 @@ mongoose.connect('mongodb://localhost/studentdb_google', { useMongoClient: true 
 // Haetaan Googlelta käyttäjän tiedot omaan passportdb -kantaan jos niitä ei siellä jo ole 
 passportFunction(passport);
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -60,5 +60,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-module.exports = app;
+app.listen(3000, () => {
+  console.log("Server is listening on port 3000");
+});

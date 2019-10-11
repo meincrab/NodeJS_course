@@ -15,6 +15,7 @@ const users = require('./app/routes/users');
 const app = express();
 const passportFunction = require('./passportfunction');
 
+
 // Käynnistä Mongodb ennen sovelluksen käyttöä. Sinne syntyy passportdb -niminen kanta
 // ja users -niminen collection
 mongoose.connect('mongodb://localhost/studentdb_google', { useMongoClient: true });
@@ -26,8 +27,6 @@ passportFunction(passport);
 app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +41,7 @@ app.use(flash()); // passportin login-sessio tarvitsee
 //reitit
 app.use('/', index);
 app.use('/users', users);
+require('./app/routes/student.routes.js')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

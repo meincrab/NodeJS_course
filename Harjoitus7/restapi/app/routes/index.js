@@ -1,6 +1,8 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+
 
 // etusivu
 router.get('/', function(req, res) {
@@ -11,11 +13,21 @@ router.get('/', function(req, res) {
 // siis tämän saman reitin callback mutta erillisenä ei-anonyyminä funktiona filun lopussa
 router.get('/profile', isLoggedIn, function(req, res) {
     console.log(req.isAuthenticated()); // Passportin metodi joka tuottaa true jos Google auth onnistui
+  
+    const payload = {
+        user: 'Test Token'
+    };
+    console.log(payload);
+    const token = jwt.sign(payload, 'hyvinsalainenmerkkijono', {
+        expiresIn: 60 * 60 * 24
+    });
+    console.log('Token is ready: ' + token);
 
-    sess = req.session; //laitetaan sessio-olio muuttujaan sess
+    sess = req.session; //laitetaan sessio-olio muuttujaan sess 
     res.render('profile.ejs', {
         user: req.user, // user requestista templaattiin
-        sessid: sess.id // viedään session id templaattiin
+        sessid: sess.id, // viedään session id templaattiin
+        token: token
     });
 });
 

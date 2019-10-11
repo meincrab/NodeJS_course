@@ -1,0 +1,10 @@
+{
+ "student_code": "u1234",
+ "name": "Test Student",
+ "email": "u1234@jamk.fi",
+ "study_points": 100,
+ "grades: [{
+ "course_code": "HTS10600",
+ "grade": 0
+ }]
+}

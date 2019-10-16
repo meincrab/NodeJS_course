@@ -38,6 +38,7 @@ export class AuthService {
         if (token) {
           this.token = token;
           console.log(token);
+          (console.log("kekek"));
           /* Tässä tutkitaan onko tokenin payloadin sisältö oikea.
              Jos on, laitetaan token sessionStorageen ja palautetaan true
              jolloin käyttäjä pääsee Admin-sivulle

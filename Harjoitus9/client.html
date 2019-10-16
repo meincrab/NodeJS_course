@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>client</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            var welcome = document.getElementById("welcome");
+            var allUsers = document.getElementById("users");
+            var results = document.getElementById("results");
+            //Luodaan clientin socket
+            var socket = io.connect("http://localhost:3010");
+
+            socket.on('welcome', function (data) {
+            console.log(data);
+            welcome.innerHTML = "Welcome to the game " + data.name + "";
+            });
+            socket.on('users', function (data) {
+            allUsers.innerHTML = "Users:" + data.users; });
+            //Joka kerta kun 'message_to_client' -tapahtuma saapuu serveriltä
+            //laitetaan data diviin joka id on chat. Lisätään myös vanhat viestit perään
+                socket.on("message_to_client", function (data) {
+                document.getElementById("chat").innerHTML = ("<br>" +
+                        data['message'] + document.getElementById("chat").innerHTML);
+            });
+            
+
+            function sendMessage() {
+                //otetaan tekstikentän sisältö talteen
+                var contents = document.getElementById("message_input").value;
+                //emitoidaan tapahtuma 'message_to_server' jolla lähtee JSON-dataa
+                socket.emit("message_to_server", {message: contents});
+            }
+        </script>
+    </head>
+    <body>
+        <div id="welcome"></div>
+        <div id="users"></div>
+        <input type="text" id="message_input"/>
+        <button onclick="sendMessage()">send</button>
+        <div id="chat"></div>
+        <div id="results"></div>
+    </body>
+</html>

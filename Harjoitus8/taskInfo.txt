@@ -1,0 +1,19 @@
+Harjoitus8. MEAN-stack
+
+Yhdistä harjoituksessa 6. tekemäsi suojattu REST-backend tähän valmiiseen Angular-frontendiin, 
+jonka käynnistät omassa projektissaan (npm start). Frontendissä on JWT-autentikaatio. 
+Koska asiakassovellus ja palvelinsovellus ovat nyt eri palvelimilla ja eri porteissa,
+laita cors-moduuli palvelinsovellukseen toimimaan jotta cross-domain -tiedonsiirto onnistuu. 
+Korjaa Angular-frontendin serviceissä olevat url-osoitteet viittaamaan omalle serverillesi. 
+Tehtävän tarkoituksena on vain demota frontendin ja backendin yhteistoimintaa. 
+Frontend on yksinkertaistettu eli siitä puuttuu opiskelijan arvosanojen (grades) 
+käsittely. Huomaa myös että frontendissä ei ole lomakedatan validointia, sillä frontendin 
+validaation toteutus riippuu siitä millaiset skeemat olet määritellyt datalle backendissä.
+ Jos frontend ei toimi, voi syynä olla se että yrität syöttää lomakkeille dataa joka ei sovi backendin skeemaan.
+ Tästä näet virheilmoituksen backendin konsolissa.
+
+
+
+Tehtävässä tarvitsee kirjoittaa koodia vain pari riviä, eikä se edellytä frontend-kehitystä Angularilla.
+ Otat corsin käyttöön serverin app.js:ssä ja lisäät url-osoitteet Angularin src/app -kansion juuressa sijaitseviin authservice.ts:ään
+ ja studservice.ts:ään. Sitten käynnistät palvelin- ja asiakassovelluksen ja menet sovellukseen sisään asiakassovelluksesta.

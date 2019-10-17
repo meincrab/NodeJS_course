@@ -4,29 +4,37 @@
         <title>client</title>
         <script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript">
-            var welcome = document.getElementById("welcome");
-            var allUsers = document.getElementById("users");
-            var results = document.getElementById("results");
+            //let welcome = document.getElementById("welcome");
+            //console.log(welcome);
+            
             //Luodaan clientin socket
-            var socket = io.connect("http://localhost:3010");
-
-            socket.on('welcome', function (data) {
-            console.log(data);
-            welcome.innerHTML = "Welcome to the game " + data.name + "";
-            });
-            socket.on('users', function (data) {
-            allUsers.innerHTML = "Users:" + data.users; });
+            let socket = io.connect("http://localhost:3010");
             //Joka kerta kun 'message_to_client' -tapahtuma saapuu serveriltä
             //laitetaan data diviin joka id on chat. Lisätään myös vanhat viestit perään
-                socket.on("message_to_client", function (data) {
-                document.getElementById("chat").innerHTML = ("<br>" +
-                        data['message'] + document.getElementById("chat").innerHTML);
+
+            socket.on('welcome', function (data) {
+                let welcome = document.getElementById("welcome");
+                console.log("Hello " + data.name);
+                welcome.innerHTML = "Welcome to the game <strong>" + data.name + "</strong>";
             });
-            
+            socket.on('numbers', function(data){
+                let numbers = document.getElementById("numbers");
+                let max = Math.max.apply(Math, data);
+                let min = Math.min.apply(Math, data);
+                numbers.innerHTML = "You have to guess right number between <strong> " + min + "</strong> and <strong>" + max + "</strong>"                
+            });
+            socket.on('users', function(data){
+                let allUsers = document.getElementById("users");
+                allUsers.innerHTML = "<strong>Users:</strong><br />" + data.users;
+            })
+            socket.on("message_to_client", function (data) {
+                document.getElementById("chat").innerHTML = ("<br>" +
+                    data['message'] + document.getElementById("chat").innerHTML);
+            });
 
             function sendMessage() {
                 //otetaan tekstikentän sisältö talteen
-                var contents = document.getElementById("message_input").value;
+                let contents = document.getElementById("message_input").value;
                 //emitoidaan tapahtuma 'message_to_server' jolla lähtee JSON-dataa
                 socket.emit("message_to_server", {message: contents});
             }
@@ -34,10 +42,12 @@
     </head>
     <body>
         <div id="welcome"></div>
+        <div id ="numbers"></div>
         <div id="users"></div>
         <input type="text" id="message_input"/>
         <button onclick="sendMessage()">send</button>
         <div id="chat"></div>
-        <div id="results"></div>
+        <div id="feedback"></div>
+        <div id="win!"></div>
     </body>
 </html>
